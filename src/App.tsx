@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import resumePdf from "./imports/Suresh_Resume_1-1.pdf";
 
 const SKILLS_LIST = [
   "UI Design",
@@ -279,7 +280,7 @@ export default function App() {
               </button>
             ))}
             <a
-              href="/src/imports/Suresh_Resume_1-1.pdf"
+              href={resumePdf}
               download
               className="text-sm border border-[#111] px-5 py-2 hover:bg-[#111] hover:text-white transition-colors"
               style={{ fontFamily: "var(--font-body)" }}
