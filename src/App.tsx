@@ -238,6 +238,14 @@ export default function App() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(
+      `Portfolio inquiry from ${formData.name}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`,
+    );
+
+    window.location.href = `mailto:ss861507@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
   };
 
@@ -813,10 +821,11 @@ export default function App() {
                       fontWeight: 700,
                     }}
                   >
-                    Message Sent!
+                    Email Draft Ready!
                   </h3>
                   <p className="text-[#666] text-sm">
-                    Thanks for reaching out. I'll get back to you soon.
+                    Your email app should open with the message details filled
+                    in.
                   </p>
                 </div>
               ) : (
