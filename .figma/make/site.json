@@ -1,6 +1,9 @@
 {
   "title": "Suresh S. | UI/UX Designer",
-  "description": "Connect with others through seamless messaging and collaboration tools designed for teams and individuals to enhance communication and productivity.",
+  "description": "Suresh S. is a UI/UX Designer from Bengaluru creating thoughtful digital experiences for web and mobile.",
+  "openGraph": {
+    "image": "https://suresh-sundararaj.github.io/Suresh_Portfolio/og-image.svg"
+  },
   "robots": {
     "index": true
   },
