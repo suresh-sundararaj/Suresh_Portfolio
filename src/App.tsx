@@ -164,7 +164,15 @@ const STATS = [
   { value: "285+", label: "Marketing Assets" },
 ];
 
-const TOOLS = ["Figma", "Photoshop", "Illustrator", "Premiere Pro", "Capcut", "Lottiefiles", "Canva"];
+const TOOLS = [
+  "Figma",
+  "Photoshop",
+  "Illustrator",
+  "Premiere Pro",
+  "Capcut",
+  "Lottiefiles",
+  "Canva",
+];
 const LOVES = ["Design", "Music", "Photography", "Travel", "Gaming", "Movies"];
 
 const DOUBLED_SKILLS = [...SKILLS_LIST, ...SKILLS_LIST];
@@ -172,7 +180,11 @@ const DOUBLED_SKILLS = [...SKILLS_LIST, ...SKILLS_LIST];
 export default function App() {
   const [activeSection, setActiveSection] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [submitted, setSubmitted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [cursor, setCursor] = useState({ x: -100, y: -100 });
@@ -185,7 +197,7 @@ export default function App() {
           if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      { threshold: 0.25, rootMargin: "-80px 0px 0px 0px" }
+      { threshold: 0.25, rootMargin: "-80px 0px 0px 0px" },
     );
     ["about", "experience", "skills", "work", "contact"].forEach((id) => {
       const el = document.getElementById(id);
@@ -197,7 +209,9 @@ export default function App() {
   useEffect(() => {
     const onScroll = () => {
       const el = document.documentElement;
-      setScrollProgress((el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100);
+      setScrollProgress(
+        (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100,
+      );
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -207,7 +221,7 @@ export default function App() {
     const move = (e: MouseEvent) => setCursor({ x: e.clientX, y: e.clientY });
     const over = (e: MouseEvent) => {
       const t = e.target as HTMLElement;
-      setCursorHover(!!(t.closest("a,button,[data-hover]")));
+      setCursorHover(!!t.closest("a,button,[data-hover]"));
     };
     window.addEventListener("mousemove", move);
     window.addEventListener("mouseover", over);
@@ -228,8 +242,10 @@ export default function App() {
   };
 
   return (
-    <div className="bg-white text-[#111111] min-h-screen overflow-x-hidden" style={{ fontFamily: "var(--font-body)" }}>
-
+    <div
+      className="bg-white text-[#111111] min-h-screen overflow-x-hidden"
+      style={{ fontFamily: "var(--font-body)" }}
+    >
       {/* ── CUSTOM CURSOR ── */}
       <div
         className="custom-cursor hidden md:block"
@@ -258,30 +274,58 @@ export default function App() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="hover:opacity-70 transition-opacity flex items-center gap-1.5"
           >
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.03em" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                letterSpacing: "-0.03em",
+              }}
+            >
               Suresh
             </span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.03em", color: "var(--color-accent)" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                letterSpacing: "-0.03em",
+                color: "var(--color-accent)",
+              }}
+            >
               S
             </span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", color: "var(--color-accent)" }}>.</span>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                color: "var(--color-accent)",
+              }}
+            >
+              .
+            </span>
           </button>
           <div className="hidden md:flex items-center gap-8">
-            {["about", "experience", "skills", "work", "contact"].map((link) => (
-              <button
-                key={link}
-                onClick={() => scrollTo(link)}
-                className={`text-sm tracking-wide capitalize transition-all ${
-                  activeSection === link ? "text-[#111] font-medium" : "text-[#888] hover:text-[#111]"
-                }`}
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {link}
-              </button>
-            ))}
+            {["about", "experience", "skills", "work", "contact"].map(
+              (link) => (
+                <button
+                  key={link}
+                  onClick={() => scrollTo(link)}
+                  className={`text-sm tracking-wide capitalize transition-all ${
+                    activeSection === link
+                      ? "text-[#111] font-medium"
+                      : "text-[#888] hover:text-[#111]"
+                  }`}
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  {link}
+                </button>
+              ),
+            )}
             <a
               href={resumePdf}
-              download
+              download="Suresh_Resume.pdf"
               className="text-sm border border-[#111] px-5 py-2 hover:bg-[#111] hover:text-white transition-colors"
               style={{ fontFamily: "var(--font-body)" }}
             >
@@ -298,7 +342,9 @@ export default function App() {
                 menuOpen ? "rotate-45 translate-y-2" : ""
               }`}
             />
-            <span className={`block h-0.5 w-6 bg-[#111] transition-all ${menuOpen ? "opacity-0" : ""}`} />
+            <span
+              className={`block h-0.5 w-6 bg-[#111] transition-all ${menuOpen ? "opacity-0" : ""}`}
+            />
             <span
               className={`block h-0.5 w-6 bg-[#111] transition-all duration-200 origin-center ${
                 menuOpen ? "-rotate-45 -translate-y-2" : ""
@@ -309,15 +355,17 @@ export default function App() {
         {menuOpen && (
           <div className="md:hidden border-t border-[#e5e5e5] bg-white">
             <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
-              {["about", "experience", "skills", "work", "contact"].map((link) => (
-                <button
-                  key={link}
-                  onClick={() => scrollTo(link)}
-                  className="text-left capitalize text-lg py-1 hover:text-[#2563EB] transition-colors"
-                >
-                  {link}
-                </button>
-              ))}
+              {["about", "experience", "skills", "work", "contact"].map(
+                (link) => (
+                  <button
+                    key={link}
+                    onClick={() => scrollTo(link)}
+                    className="text-left capitalize text-lg py-1 hover:text-[#2563EB] transition-colors"
+                  >
+                    {link}
+                  </button>
+                ),
+              )}
             </div>
           </div>
         )}
@@ -325,12 +373,12 @@ export default function App() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex flex-col justify-center pt-20 px-6 overflow-hidden">
-
         {/* Dot grid background */}
         <div
           className="absolute inset-0 opacity-[0.35]"
           style={{
-            backgroundImage: "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, #cbd5e1 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
@@ -338,19 +386,52 @@ export default function App() {
         {/* Floating geometric shapes */}
         <div className="absolute top-24 right-10 md:right-24 float-shape opacity-10 select-none pointer-events-none">
           <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
-            <circle cx="90" cy="90" r="88" stroke="#2563EB" strokeWidth="1.5" strokeDasharray="8 5" />
-            <circle cx="90" cy="90" r="60" stroke="#111" strokeWidth="1" strokeDasharray="4 8" />
+            <circle
+              cx="90"
+              cy="90"
+              r="88"
+              stroke="#2563EB"
+              strokeWidth="1.5"
+              strokeDasharray="8 5"
+            />
+            <circle
+              cx="90"
+              cy="90"
+              r="60"
+              stroke="#111"
+              strokeWidth="1"
+              strokeDasharray="4 8"
+            />
           </svg>
         </div>
         <div className="absolute bottom-32 right-4 md:right-40 float-shape-slow opacity-[0.07] select-none pointer-events-none">
           <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
-            <rect x="2" y="2" width="96" height="96" stroke="#111" strokeWidth="1.5" />
-            <rect x="18" y="18" width="64" height="64" stroke="#2563EB" strokeWidth="1" />
+            <rect
+              x="2"
+              y="2"
+              width="96"
+              height="96"
+              stroke="#111"
+              strokeWidth="1.5"
+            />
+            <rect
+              x="18"
+              y="18"
+              width="64"
+              height="64"
+              stroke="#2563EB"
+              strokeWidth="1"
+            />
           </svg>
         </div>
         <div className="absolute top-1/3 right-6 md:right-16 spin-slow opacity-[0.06] select-none pointer-events-none">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-            <polygon points="30,2 58,58 2,58" stroke="#111" strokeWidth="1.5" fill="none" />
+            <polygon
+              points="30,2 58,58 2,58"
+              stroke="#111"
+              strokeWidth="1.5"
+              fill="none"
+            />
           </svg>
         </div>
 
@@ -362,9 +443,13 @@ export default function App() {
                 <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-green-400" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
               </span>
-              <span className="text-xs text-[#555] tracking-wide">Available for work</span>
+              <span className="text-xs text-[#555] tracking-wide">
+                Available for work
+              </span>
             </div>
-            <span className="text-xs tracking-[0.2em] uppercase text-[#aaa]">UI/UX Designer · Bengaluru</span>
+            <span className="text-xs tracking-[0.2em] uppercase text-[#aaa]">
+              UI/UX Designer · Bengaluru
+            </span>
           </div>
 
           <h1
@@ -384,9 +469,9 @@ export default function App() {
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
             <p className="text-lg md:text-xl text-[#555] max-w-xl leading-relaxed">
-              UI/UX Designer specialising in B2B & B2C fintech products — crafting
-              intuitive payment flows, merchant platforms, and design systems that
-              convert complexity into clarity.
+              UI/UX Designer specialising in B2B & B2C fintech products —
+              crafting intuitive payment flows, merchant platforms, and design
+              systems that convert complexity into clarity.
             </p>
             <div className="flex items-center gap-3 shrink-0">
               <button
@@ -428,7 +513,9 @@ export default function App() {
 
           {/* Scroll indicator */}
           <div className="mt-12 flex flex-col items-start gap-1">
-            <span className="text-xs text-[#bbb] tracking-widest uppercase">Scroll</span>
+            <span className="text-xs text-[#bbb] tracking-widest uppercase">
+              Scroll
+            </span>
             <div className="w-5 h-8 border border-[#ddd] rounded-full flex items-start justify-center pt-1.5">
               <div className="scroll-dot w-1 h-1 rounded-full bg-[#999]" />
             </div>
@@ -498,14 +585,20 @@ export default function App() {
               <InfoCard label="Education">
                 <div className="space-y-4">
                   <div>
-                    <div className="font-medium text-sm">Master of Business Administration</div>
+                    <div className="font-medium text-sm">
+                      Master of Business Administration
+                    </div>
                     <div className="text-sm text-[#888]">
                       Kalasalingam University · CGPA 7.9 · 2018–2020
                     </div>
                   </div>
                   <div>
-                    <div className="font-medium text-sm">B.Com CA (Computer Application)</div>
-                    <div className="text-sm text-[#888]">VHNSN College · CGPA 6.7 · 2015–2018</div>
+                    <div className="font-medium text-sm">
+                      B.Com CA (Computer Application)
+                    </div>
+                    <div className="text-sm text-[#888]">
+                      VHNSN College · CGPA 6.7 · 2015–2018
+                    </div>
                   </div>
                 </div>
               </InfoCard>
@@ -530,7 +623,11 @@ export default function App() {
       {/* ── EXPERIENCE ── */}
       <section id="experience" className="py-24 px-6 bg-[#fafafa]">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader number="02" label="Experience" title="Where I've Worked" />
+          <SectionHeader
+            number="02"
+            label="Experience"
+            title="Where I've Worked"
+          />
           <div className="mt-12">
             {EXPERIENCE.map((exp, i) => (
               <ExperienceItem key={exp.id} exp={exp} index={i} />
@@ -625,7 +722,11 @@ export default function App() {
       {/* ── CONTACT ── */}
       <section id="contact" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader number="05" label="Contact" title="Let's Work Together" />
+          <SectionHeader
+            number="05"
+            label="Contact"
+            title="Let's Work Together"
+          />
 
           <div className="mt-12 grid md:grid-cols-2 gap-16">
             <div>
@@ -637,8 +738,16 @@ export default function App() {
 
               <div className="space-y-6">
                 {[
-                  { label: "Email", value: "ss861507@gmail.com", href: "mailto:ss861507@gmail.com" },
-                  { label: "Phone", value: "+91 8778433934", href: "tel:+918778433934" },
+                  {
+                    label: "Email",
+                    value: "ss861507@gmail.com",
+                    href: "mailto:ss861507@gmail.com",
+                  },
+                  {
+                    label: "Phone",
+                    value: "+91 8778433934",
+                    href: "tel:+918778433934",
+                  },
                   { label: "Location", value: "Bengaluru, India", href: "" },
                 ].map((item) => (
                   <div key={item.label}>
@@ -662,8 +771,14 @@ export default function App() {
 
               <div className="mt-10 flex gap-3">
                 {[
-                  { label: "LinkedIn ↗", href: "https://www.linkedin.com/in/ss861507/" },
-                  { label: "Behance ↗", href: "https://www.behance.net/Ssuresh" },
+                  {
+                    label: "LinkedIn ↗",
+                    href: "https://www.linkedin.com/in/ss861507/",
+                  },
+                  {
+                    label: "Behance ↗",
+                    href: "https://www.behance.net/Ssuresh",
+                  },
                 ].map((link) => (
                   <a
                     key={link.label}
@@ -684,13 +799,19 @@ export default function App() {
                 <div className="border border-[#e5e5e5] p-10 text-center">
                   <div
                     className="text-5xl mb-4"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--color-accent)",
+                    }}
                   >
                     ✓
                   </div>
                   <h3
                     className="text-xl mb-2"
-                    style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontWeight: 700,
+                    }}
                   >
                     Message Sent!
                   </h3>
@@ -701,8 +822,18 @@ export default function App() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   {[
-                    { label: "Name", type: "text", field: "name", placeholder: "Your Name" },
-                    { label: "Email", type: "email", field: "email", placeholder: "your@email.com" },
+                    {
+                      label: "Name",
+                      type: "text",
+                      field: "name",
+                      placeholder: "Your Name",
+                    },
+                    {
+                      label: "Email",
+                      type: "email",
+                      field: "email",
+                      placeholder: "your@email.com",
+                    },
                   ].map((input) => (
                     <div key={input.field}>
                       <label className="text-xs tracking-[0.2em] uppercase text-[#888] block mb-2">
@@ -713,7 +844,10 @@ export default function App() {
                         required
                         value={formData[input.field as keyof typeof formData]}
                         onChange={(e) =>
-                          setFormData({ ...formData, [input.field]: e.target.value })
+                          setFormData({
+                            ...formData,
+                            [input.field]: e.target.value,
+                          })
                         }
                         className="w-full border border-[#e5e5e5] px-4 py-3 text-sm focus:outline-none focus:border-[#111] transition-colors bg-white"
                         placeholder={input.placeholder}
@@ -728,7 +862,9 @@ export default function App() {
                       required
                       rows={5}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       className="w-full border border-[#e5e5e5] px-4 py-3 text-sm focus:outline-none focus:border-[#111] transition-colors resize-none bg-white"
                       placeholder="Tell me about your project..."
                     />
@@ -760,8 +896,7 @@ export default function App() {
                 letterSpacing: "-0.02em",
               }}
             >
-              SURESH S
-              <span className="mx-6 text-[#2563EB]">✦</span>
+              SURESH S<span className="mx-6 text-[#2563EB]">✦</span>
               UI/UX DESIGNER
               <span className="mx-6 text-[#2563EB]">✦</span>
             </span>
@@ -773,13 +908,36 @@ export default function App() {
       <footer className="border-t border-[#e5e5e5] py-8 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#888]">
           <span className="flex items-center gap-1">
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.03em", color: "#111" }}>Suresh</span>
-            <span style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: "1.1rem", letterSpacing: "-0.03em", color: "var(--color-accent)" }}>S.</span>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                letterSpacing: "-0.03em",
+                color: "#111",
+              }}
+            >
+              Suresh
+            </span>
+            <span
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "1.1rem",
+                letterSpacing: "-0.03em",
+                color: "var(--color-accent)",
+              }}
+            >
+              S.
+            </span>
           </span>
           <span>© 2026 Suresh S — UI/UX Designer, Bengaluru</span>
           <div className="flex gap-6">
             {[
-              { label: "LinkedIn", href: "https://www.linkedin.com/in/ss861507/" },
+              {
+                label: "LinkedIn",
+                href: "https://www.linkedin.com/in/ss861507/",
+              },
               { label: "Behance", href: "https://www.behance.net/Ssuresh" },
               { label: "Email", href: "mailto:ss861507@gmail.com" },
             ].map((link) => (
@@ -826,7 +984,9 @@ function SectionHeader({
         {number}
       </span>
       <div className="mt-2">
-        <span className="text-xs tracking-[0.25em] uppercase text-[#888] block mb-1.5">{label}</span>
+        <span className="text-xs tracking-[0.25em] uppercase text-[#888] block mb-1.5">
+          {label}
+        </span>
         <h2
           style={{
             fontFamily: "var(--font-display)",
@@ -842,10 +1002,18 @@ function SectionHeader({
   );
 }
 
-function InfoCard({ label, children }: { label: string; children: React.ReactNode }) {
+function InfoCard({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="border border-[#e5e5e5] p-5">
-      <div className="text-xs tracking-[0.2em] uppercase text-[#888] mb-3">{label}</div>
+      <div className="text-xs tracking-[0.2em] uppercase text-[#888] mb-3">
+        {label}
+      </div>
       {children}
     </div>
   );
@@ -867,7 +1035,11 @@ function ExperienceItem({
       >
         <span
           className="shrink-0 mt-0.5 w-8 text-sm"
-          style={{ fontFamily: "var(--font-display)", fontWeight: 600, color: "#ccc" }}
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 600,
+            color: "#ccc",
+          }}
         >
           {exp.id}
         </span>
@@ -898,7 +1070,10 @@ function ExperienceItem({
           </div>
           <div className="flex flex-wrap gap-1.5 mt-2.5">
             {exp.tags.map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 bg-[#f0f0f0] text-[#666]">
+              <span
+                key={tag}
+                className="text-xs px-2 py-0.5 bg-[#f0f0f0] text-[#666]"
+              >
                 {tag}
               </span>
             ))}
@@ -908,11 +1083,19 @@ function ExperienceItem({
 
       {open && (
         <div className="pl-13 pb-6 ml-[3.25rem] border-l-2 border-[#e5e5e5] pl-6">
-          <p className="text-[#555] text-sm mb-4 leading-relaxed">{exp.description}</p>
+          <p className="text-[#555] text-sm mb-4 leading-relaxed">
+            {exp.description}
+          </p>
           <ul className="space-y-2">
             {exp.highlights.map((h, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-[#666]">
-                <span className="shrink-0 mt-0.5" style={{ color: "var(--color-accent)" }}>
+              <li
+                key={i}
+                className="flex items-start gap-2 text-sm text-[#666]"
+              >
+                <span
+                  className="shrink-0 mt-0.5"
+                  style={{ color: "var(--color-accent)" }}
+                >
                   →
                 </span>
                 {h}
@@ -927,17 +1110,21 @@ function ExperienceItem({
 
 function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
   return (
-    <div className="relative border border-[#e5e5e5] p-6 group hover:border-[#2563EB] hover:shadow-lg transition-all duration-300 bg-white overflow-hidden" data-hover>
+    <div
+      className="relative border border-[#e5e5e5] p-6 group hover:border-[#2563EB] hover:shadow-lg transition-all duration-300 bg-white overflow-hidden"
+      data-hover
+    >
       {/* Accent top line */}
-      <div
-        className="absolute top-0 left-0 h-[3px] w-0 group-hover:w-full transition-all duration-500 bg-[#2563EB]"
-      />
+      <div className="absolute top-0 left-0 h-[3px] w-0 group-hover:w-full transition-all duration-500 bg-[#2563EB]" />
       {/* Background tint on hover */}
       <div className="absolute inset-0 bg-[#2563EB]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div className="relative flex items-start justify-between mb-4">
         <div>
-          <div className="text-xs tracking-widest uppercase mb-1" style={{ color: "var(--color-accent)" }}>
+          <div
+            className="text-xs tracking-widest uppercase mb-1"
+            style={{ color: "var(--color-accent)" }}
+          >
             {project.company}
           </div>
           <h3
@@ -956,10 +1143,15 @@ function ProjectCard({ project }: { project: (typeof PROJECTS)[0] }) {
           {project.stats}
         </span>
       </div>
-      <p className="relative text-sm text-[#666] leading-relaxed mb-4">{project.description}</p>
+      <p className="relative text-sm text-[#666] leading-relaxed mb-4">
+        {project.description}
+      </p>
       <div className="relative flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
-          <span key={tag} className="text-xs border border-[#e5e5e5] px-2 py-0.5 text-[#888] group-hover:border-[#2563EB]/30 transition-colors">
+          <span
+            key={tag}
+            className="text-xs border border-[#e5e5e5] px-2 py-0.5 text-[#888] group-hover:border-[#2563EB]/30 transition-colors"
+          >
             {tag}
           </span>
         ))}
